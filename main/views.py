@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from django.http import HttpResponse, HttpRequest
+from datetime import datetime
 
-# Create your views here.
+def home(request: HttpRequest):
+    return HttpResponse(f'''
+        <h1>Hello!</h1>
+    ''')
+    
+def time_view(request: HttpRequest):
+    return HttpResponse(datetime.now())
+
+def script_view(request: HttpRequest):
+    return HttpResponse('''
+        <script>alert("hello")</script>
+    ''')
