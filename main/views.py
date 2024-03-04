@@ -1,11 +1,9 @@
 from django.http import HttpResponse, HttpRequest
 from datetime import datetime
+from django.shortcuts import render
 
-def home(request: HttpRequest):
-    return HttpResponse(f'''
-        <h1>Hello!</h1>
-    ''')
-# return HttpResponse(render(request, 'index.html', {}))
+def index_page(request: HttpRequest):
+    return render(request, 'index.html')
     
 def time_view(request: HttpRequest):
     return HttpResponse(datetime.now())
