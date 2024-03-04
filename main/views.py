@@ -3,7 +3,7 @@ from datetime import datetime
 from django.shortcuts import render
 
 def index_page(request: HttpRequest):
-    return render(request, 'index.html')
+    return render(request, 'product.html')
     
 def time_view(request: HttpRequest):
     return HttpResponse(datetime.now())

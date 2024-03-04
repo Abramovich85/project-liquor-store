@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <!--Header start-->
+    <header class="header">
+        <div class="wrapper">
+            <div class="header_wrapper">
+                <div class="header_logo">
+                    <a href="/" class="header_logo-link">
+                        <img src="{% static 'img/png/logo1.png' %}" alt="Винный Бутик" class="header_logo-pic">
+                    </a>
+                </div>
+                <nav class="header_nav">
+                    <ul class="list">
+                        <li class="header_item"><a href="#!" class="header_link">Каталог</a></li>
+                        <li class="header_item"><a href="#!" class="header_link">Доставка</a></li>
+                        <li class="header_item"><a href="#!" class="header_link">Вход/Регистрация</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <ul>
+                        <li><a href="catalog.html">Избранное</a></li>
+                        <li><a href="delivery.html">Корзина</a></li>
+                        <li><a href="collection.html">Профиль</a></li>
+                    </ul>
+                </div>
+            </div><!--header_wrapper-->
+        </div><!--wrapper-->
+    </header>
+    <!--Header end-->
+    <!--Main start-->
+    <main class="main">
+    {% block content %}
+    {% endblock %}
+    </main>
+    <!--Main end-->
+    <!--Footer start-->
+    <footer class="footer">
+        <div class="wrapper">
+            <div class="footer_list-top">
+                <ul class="list footer_list">
+                    <li class="footer_item-top"><a href="/index.html" class="footer_link">Главная</a></li>
+                    <li class="footer_item-top"><a href="#!" class="footer_link">Каталог</a></li>
+                    <li class="footer_item-top"><a href="#!" class="footer_link">Коллекции</a></li>
+                    <li class="footer_item-top"><a href="#!" class="footer_link">Дегустация</a></li>
+                    <li class="footer_item-top"><a href="#!" class="footer_link">Контакты</a></li>
+                </ul>
+            </div><!--footer_list-top-->
+            <div class="footer_list-bottom">
+                <ul class="list">
+                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">винный бутик abramovich</a></li>
+                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">8 (906) 323-22-41</a></li>
+                    <li class="footer_item-bottom">
+                        <ul class="list list2">
+                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/youtube.svg" alt="youtube"></a></li>
+                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/vk.svg" alt="vk"></a></li>
+                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/fcb.svg" alt="facebook" class="fcb"></a></li>
+                        </ul>
+                    </li>
+                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">© abramovich</a></li>
+                </ul>
+            </div><!--footer_list-bottom-->
+        </div><!--wrapper-->
+    </footer>
+    <!--Footer end-->
+</body>
+</html>
