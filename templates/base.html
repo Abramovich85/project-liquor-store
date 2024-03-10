@@ -3,72 +3,206 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {% block head %}
     {% endblock %}
 </head>
 <body>
-    <!--Header start-->
-    <header class="header">
-        <div class="wrapper">
-            <div class="header_wrapper">
-                <div class="header_logo">
-                    <a href="/" class="header_logo-link">
-                        <img src="{% static 'img/png/logo1.png' %}" alt="Винный Бутик" class="header_logo-pic">
-                    </a>
+    <div class="wrapper">
+        <!-- Header start -->
+        <header class="header">
+            <div class="header-top py-1"><!--header-top start-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6 col-sm-4">
+                            <div class="header-top-phone d-flex align-items-center h-100">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                                <a href="tel:+79063232241" class="ms-2">8(906)323-22-41</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 d-none d-sm-block">
+                            <ul class="social-icons d-flex justify-content-center">
+                                <li><a href="#"><i class="fa-brands fa-vk"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-sm-4">
+                            <div class="header-top-account d-flex justify-content-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Account
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#">Sig In</a></li>
+                                      <li><a class="dropdown-item" href="#">Sig Up</a></li>
+                                    </ul>
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
                 </div>
-                <nav class="header_nav">
-                    <ul class="list">
-                        <li class="header_item"><a href="#!" class="header_link">Каталог</a></li>
-                        <li class="header_item"><a href="#!" class="header_link">Доставка</a></li>
-                        <li class="header_item"><a href="#!" class="header_link">Вход/Регистрация</a></li>
-                    </ul>
-                </nav>
-                <div>
-                    <ul>
-                        <li><a href="catalog.html">Избранное</a></li>
-                        <li><a href="delivery.html">Корзина</a></li>
-                        <li><a href="collection.html">Профиль</a></li>
-                    </ul>
+            </div><!-- "header-top" end-->
+
+            <div class="header-middle bg-white py-4"><!--header-middle start-->
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+
+                        <div class="col-sm-6 col-lg-4">
+                            <a href="#" class="header-logo h1">Liquor</a>
+                        </div>
+                     
+                        <div class="col-lg-4 order-md-2 cart-buttons text-end d-none d-lg-block">
+                            <a href="#"class="btn p-1">
+                                <i class="fa-solid fa-heart"></i>
+                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
+
+                            </a>
+                            <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
+                            </button>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-6 order-md-1 mt-2 mt-md-0">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="s" placeholder="Searching..." aria-label="Searching..." aria-describedby="button-search">
+                                    <button class="btn btn-outline-warning" type="submit" id="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                  </div>
+                                  
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div><!--header_wrapper-->
-        </div><!--wrapper-->
-    </header>
-    <!--Header end-->
-    <!--Main start-->
-    <main class="main">
-    {% block content %}
-    {% endblock %}
-    </main>
-    <!--Main end-->
-    <!--Footer start-->
-    <footer class="footer">
-        <div class="wrapper">
-            <div class="footer_list-top">
-                <ul class="list footer_list">
-                    <li class="footer_item-top"><a href="/index.html" class="footer_link">Главная</a></li>
-                    <li class="footer_item-top"><a href="#!" class="footer_link">Каталог</a></li>
-                    <li class="footer_item-top"><a href="#!" class="footer_link">Коллекции</a></li>
-                    <li class="footer_item-top"><a href="#!" class="footer_link">Дегустация</a></li>
-                    <li class="footer_item-top"><a href="#!" class="footer_link">Контакты</a></li>
-                </ul>
-            </div><!--footer_list-top-->
-            <div class="footer_list-bottom">
-                <ul class="list">
-                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">винный бутик abramovich</a></li>
-                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">8 (906) 323-22-41</a></li>
-                    <li class="footer_item-bottom">
-                        <ul class="list list2">
-                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/youtube.svg" alt="youtube"></a></li>
-                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/vk.svg" alt="vk"></a></li>
-                            <li class="footer_item-img"><a href="#!" class="footer_bottom-link"><img src="img/svg/fcb.svg" alt="facebook" class="fcb"></a></li>
+            </div><!--header-middle end-->
+
+               <!-- Offcanvas start -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasCartLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div>
+                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                    </div>
+                    <div class="dropdown mt-3">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
-                    <li class="footer_item-bottom"><a href="#!" class="footer_bottom-link">© abramovich</a></li>
-                </ul>
-            </div><!--footer_list-bottom-->
-        </div><!--wrapper-->
-    </footer>
-    <!--Footer end-->
+                    </div>
+                </div>
+            </div> <!-- Offcanvas end-->
+            
+        </header>
+        <!--Пришлось вынести header-bottom за пределы header дабы отрабатывал sticky-top-->
+        <div class="header-bottom sticky-top"><!--header-bottom start-->
+            <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Меню</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                       
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Payment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Delivery</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                    Каталог
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">   
+                                    <li><a class="dropdown-item" href="#">Абсент</a></li>
+                                    <li><a class="dropdown-item" href="#">Арманьяк</a></li>
+                                    <li><a class="dropdown-item" href="#">Бурбон</a></li>
+                                    <li><a class="dropdown-item" href="#">Бренди</a></li>
+                                    <li><a class="dropdown-item" href="#">Виски</a></li>
+                                    <li><a class="dropdown-item" href="#">Водка</a></li>
+
+                                    <li class="nav-item dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                            Вино
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#">Белое</a></li>
+                                            <li><a class="dropdown-item" href="#">Красное</a></li>
+                                            <li><a class="dropdown-item" href="#">Розовое</a></li>
+                                            <li><a class="dropdown-item" href="#">Игристое</a></li>
+                                            <li><a class="dropdown-item" href="#">Шампанское</a></li>
+                                            <li><a class="dropdown-item" href="#">Безалкогольное</a></li>
+                                        </ul>
+
+                                    <li><a class="dropdown-item" href="#">Джин</a></li>
+                                    <li><a class="dropdown-item" href="#">Коньяк</a></li>
+                                    <li><a class="dropdown-item" href="#">Ром</a></li>
+                                    <li><a class="dropdown-item" href="#">Текила</a></li>
+                                </ul>
+                            </li>                        
+                        </ul>
+                    </div>
+                  </div>
+                    <div class="d-block d-lg-none">
+                        <a href="#"class="btn p-1">
+                            <i class="fa-solid fa-heart"></i>
+                            <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
+    
+                        </a>
+                        <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
+                        </button>
+                    </div>
+                    
+                </div><!--container-fluid end-->
+              </nav>
+        </div><!--header-bottom end-->
+        <!-- Header end -->
+        
+        <!-- Main start -->
+        <main class="main">
+        {% block content %}
+        {% endblock %}
+        </main>
+<!-- Main end -->
+<!-- Footer start -->
+<footer class="footer">Footer</footer>
+<!-- Footer end -->
+</div>
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
