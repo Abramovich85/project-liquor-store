@@ -1,0 +1,5 @@
+python manage.py runserver -старт сервера
+
+python manage.py makemigrations -создает файл для перехода базы данных в новое состояние
+
+python manage.py migrate - применяет этот код
