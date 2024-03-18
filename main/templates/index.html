@@ -58,6 +58,18 @@
         </button>
     </div>
     <div class="container-fluid">
+        <div class="row">
+            <ul class="product-list">
+            {% for product in products %}
+            <li class="col-4">
+                <div class="product-card">
+                    <h2>{{product.name}}</h2>
+                    <p>{{product.description}}</p>
+                    <p>{{product.price}}</p>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, tempore dolor porro recusandae assumenda consequuntur praesentium, deserunt enim consectetur ipsam esse, cupiditate soluta. Error mollitia minus assumenda repellat similique nesciunt.</p>
     </div>
 {% endblock %}
