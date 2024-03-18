@@ -4,5 +4,5 @@ from django.shortcuts import render
 from .models import Product
 
 def index_page(request: HttpRequest):
-    products = Product.objects.all()
-    return HttpResponse( render(request, 'index.html', {'products': products}))
+    products = Product.objects.filter(is_active=True)
+    return HttpResponse( render(request, 'main.html', {'products': products}))
