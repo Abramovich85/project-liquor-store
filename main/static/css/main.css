@@ -157,6 +157,7 @@ ul.social-icons a:hover {
   padding-left: 0;
 }
 
+
 .header-bottom .navbar .nav-link {
   color: #fff;
   transition: .3s all;
@@ -173,6 +174,11 @@ ul.social-icons a:hover {
 
 .header-bottom .navbar .dropdown-menu {
   margin-top: 7px;
+}
+
+.headernav-scroll.header-bottom .navbar .offcanvas:not(.show) .nav-link {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 /* ============================================= Header rules end =============================================== */
@@ -225,7 +231,7 @@ ul.social-icons a:hover {
 
 }
 
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 991.98px){
   .header-bottom .navbar .dropdown-menu {
     padding-left: 1rem;
   }
