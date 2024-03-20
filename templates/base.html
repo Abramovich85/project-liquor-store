@@ -57,7 +57,7 @@
                     <div class="row align-items-center">
 
                         <div class="col-sm-6 col-lg-4">
-                            <a href="#" class="header-logo h1">Wine 
+                            <a href="{% url 'home' %}" class="header-logo h1">Wine 
                                 boutique</a>
                         </div>
                      
@@ -125,7 +125,7 @@
                        
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About</a>
@@ -143,7 +143,8 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                     Каталог Вина
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">   
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="{% url 'products' %}">Все вина</a></li>   
                                     <li><a class="dropdown-item" href="#">Белое</a></li>
                                     <li><a class="dropdown-item" href="#">Красное</a></li>
                                     <li><a class="dropdown-item" href="#">Розовое</a></li>

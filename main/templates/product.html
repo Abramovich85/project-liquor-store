@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<img src="{% if product.image.url is not None %}{{ product.image.url }}{% endif %}" alt="Картитнка">
+<h1 class="product-card__title">{{ product.name }}</h1>
+            <p class="product-card__text">{{ product.description }}</p>
+            <div class="product-card__prices-container">
+                {% if product.original_price is not None %}
+                <p><span class="original_price">{{product.original_price}}</span></p>
+                {% endif %}
+                <p class="product-card__price"><span>Цена:</span>{{ product.price }}</p>
+            </div>
+            <form action="{% url 'add_to_basket' product.id %}" class="product__add-to-basket-form">
+                <button type="submit" class="btn btn-outline-secondary">
+                    Добавить в корзину
+                </button>
+            </form>
+            
+{% endblock %}
