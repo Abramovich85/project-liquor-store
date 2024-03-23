@@ -4,6 +4,8 @@
   --accent-color: #ffd333; 
   --contrast-color: #3d464d;
   --gray-color: #ccc;
+  --red-color: #ee6e73;
+  --light-grey-color: #eee;
 }
 
 
@@ -77,6 +79,31 @@ main.main {
     flex: 1 1 auto;
 }
 
+section {
+    padding: 50px 0;
+}
+
+.section-title {
+  position: relative;
+  text-transform: uppercase;
+  color: var(--contrast-color);
+  font-weight: 700;
+}
+
+.section-title span {
+  background-color: var(--bg-color);
+  padding-right: 1rem;
+}
+
+.section-title::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  top: 50%;
+  left: 0;
+  border: 1px dashed var(--text-color);
+  z-index: -1;
+}
 
 /* ============================================= General rules end =============================================== */
 
@@ -197,24 +224,102 @@ ul.social-icons a:hover {
 
 /* ============================================= Carousel rules end =============================================== */
 
+/* ============================================= Full products start =============================================== */
+
+/* ============================================= Product card start =============================================== */
+
 .product-card {
+  transition: all .3s;
+  border: 1px solid var(--gray-color);
+  background-color: #fff;
+  position: relative;
+}
+
+.product-card:hover{
+  box-shadow: 0 10px 20px -15px rgb(14, 13, 13);
+}
+
+.product-card-offer{
+  color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-transform: uppercase;
+}
+.product-card-offer>div {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
-  border: solid 1px var(--gray-color);
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
-  transition: .3s all;
-  width: 300px;
-  height: 350px;
-  margin: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
-.product-card:hover {
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.6);
+.offer-sale {
+  background-color: var(--red-color);
 }
 
-.original_price {
+.product-thumb {
+  text-align: center;
+}
+
+.product-thumb img {
+  max-height: 250px;
+}
+
+.product-details {
+  padding: 10px 20px;
+}
+
+.product-details h4 {
+  font-size: 1.2rem;
+}
+
+.product-details h4 a {
+  height: 45px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.product-details h4 a:hover {
+  color: var(--accent-color);
+}
+
+.product-excerpt {
+  height: 45px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.product-bottom-details {
+  border-top: 1px solid var(--light-grey-color);
+  padding-top: 1rem;
+}
+
+.product-price {
+  font-size: 18px;
+  color: var(--red-color);
+  font-weight: 600;
+}
+
+.product-price small {
+  color: var(--gray-color);
+  font-weight: 400;
   text-decoration: line-through;
-  color: #afb2b48f;
 }
+/* ============================================= Product card end =============================================== */
+
+
+/* ============================================= Full products end =============================================== */
+
 /* ============================================= Main rules end =============================================== */
 
 

@@ -5,16 +5,9 @@ from .models import Product
 
 def index_page(request: HttpRequest):
     products = Product.objects.filter(is_active=True)
-    return HttpResponse( render(request, 'main.html', {'products': products}))
-
-def products_view(request: HttpRequest):
-    products = Product.objects.filter(is_active=True)
     products = products.order_by('-count')
 
-    return HttpResponse(render(request, 'products.html', {
-        'products': products
-    }))
-
+    return HttpResponse( render(request, 'main.html', {'products': products}))
 
 def product_view(request: HttpRequest, id: int):
     try:

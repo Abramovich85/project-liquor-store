@@ -57,8 +57,60 @@
         <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <section class="full-products">
+        <div class="container-fluid">
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="section-title">
+                        <span>Все товары</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                    <div class="product-card">
+                        {% if product.original_price is not None %}
+                        <div class="product-card-offer">
+                            <div class="offer-sale">Sale</div>
+                        </div>
+                        {% endif %}
+                        <div class="product-thumb">
+                            <a href="{% url 'product' product.id %}">
+                                <img 
+                                    src="{% if product.image.url is not None %}{{ product.image.url }}{% endif %}" 
+                                    alt="{{ product.name }}"
+                                />
+                            </a>
+                        </div>
+                        <div class="product-details">
+                            <h4>
+                                <a href="{% url 'product' product.id %}">{{product.name}}</a>
+                            </h4>
+                            <p class="product-excerpt">{{product.description}}</p>
+                            <div class="product-bottom-details d-flex justify-content-between">
+                                <div class="product-price">
+                                    {% if product.original_price is not None %}
+                                    <small>{{product.original_price}}</small>
+                                    {% endif %}
+                                    {{product.price}}
+                                </div>
+                                <div class="product-links">
+                                    <a href="#" class="btn btn-outline-secondary add-to-cart"><i
+                                        class="fas fa-shopping-cart"></i></a>
+                                    <!-- <a href="{% url 'product' product.id %}" class="product-card__link">Подробнее</a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
     <div class="container-fluid">
-        <div class="row">
+        <!-- <div class="row">
             <ul class="product-list">
             {% for product in products %}
             {% if product.original_price is not None %}
@@ -79,22 +131,7 @@
             {% endif %}
             {% endfor %}
             </ul>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque quos nemo magni. Corporis consequatur, sed impedit repellat nemo ratione et quas, suscipit nihil sunt deleniti dignissimos molestias facere placeat!</p>
-        <p>Eum quasi dolorum nulla numquam dolor quisquam, blanditiis magnam natus repellat ducimus sunt obcaecati! Similique, harum aliquid! Consequuntur, sint saepe debitis ea placeat culpa ipsam. Cumque deserunt exercitationem magnam quasi.</p>
-        <p>Minus libero maxime, magni minima beatae, incidunt quia deserunt praesentium explicabo eveniet molestias autem necessitatibus? Enim impedit ex possimus inventore ratione? Voluptates voluptate blanditiis rerum aspernatur distinctio quidem perferendis delectus.</p>
-        <p>Sunt totam earum, error eaque illo numquam nihil eos odit quae ex iste, tempora vitae incidunt sint atque? Sed dolorem eveniet nobis officiis, obcaecati assumenda cum vero nihil saepe quae.</p>
-        <p>Provident, ducimus sapiente ad autem assumenda neque qui. Quasi nisi at officiis assumenda corporis, provident et aliquid dolores ea odit temporibus nemo illum vero, nesciunt, facere accusamus sint dolorum natus.</p>
-        <p>Deserunt consequatur quis necessitatibus minus, itaque vero possimus esse, incidunt modi, dicta quibusdam. Tempora quis labore, rerum facere, aliquam ad commodi veritatis libero alias fugiat porro? Alias eaque a labore.</p>
-        <p>Quisquam, repudiandae consectetur quod eligendi ipsam facere minus blanditiis porro minima doloremque. Explicabo, ipsam distinctio? Veritatis repellendus quidem quo placeat cum totam ipsa, vitae deleniti! Molestias autem facilis reprehenderit nam.</p>
-        <p>Placeat amet consequuntur, ut molestiae dolor, cupiditate libero, aspernatur fugiat impedit quas autem. Quas iure, veniam accusamus distinctio laborum, laboriosam assumenda est facilis facere quia, voluptates fuga necessitatibus provident incidunt.</p>
-        <p>Explicabo, eligendi tempore mollitia quas molestias dolore quaerat quam consequuntur libero illo at repellendus maxime incidunt molestiae! Veritatis, adipisci, aspernatur maxime, aut tenetur magnam blanditiis quod esse repellat corrupti nesciunt.</p>
-        <p>At dolor asperiores explicabo dolorum vero cupiditate dolore, quisquam, dolorem amet assumenda laboriosam voluptate fuga harum quos. Aspernatur harum et recusandae minus expedita molestiae eos, eligendi eaque culpa cupiditate veritatis.</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque officia porro, perferendis corrupti quia doloribus at. Corrupti dolor labore animi. Quia magni ipsa pariatur maiores quas atque inventore nemo natus?</p>
-        <p>Repellat culpa veniam ullam corrupti unde, esse ut saepe, ducimus incidunt mollitia rem nemo? Dolorem qui sunt repellendus vero! Voluptatem voluptate repellendus illum expedita ex voluptatum quibusdam modi accusamus atque?</p>
-        <p>Debitis vitae illum repellat nisi maiores aliquid at architecto laboriosam id fuga culpa, aut laborum rem officia ducimus tempore nulla cumque eligendi, dolores porro, vero est a? Reprehenderit, iure. Placeat.</p>
-        <p>Labore, atque! Ab voluptate maxime non qui beatae cupiditate voluptas fugit, ad possimus commodi facilis. Amet at perferendis vero ipsum, culpa, facere beatae corporis facilis quaerat eos recusandae dolore aut.</p>
-        <p>Quod nam sint mollitia et fugit quo magnam corrupti ad, deserunt molestiae tenetur aspernatur. Optio velit pariatur rem, itaque alias deleniti quod in ipsa sequi, quibusdam laborum modi dolore aperiam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, tempore dolor porro recusandae assumenda consequuntur praesentium, deserunt enim consectetur ipsam esse, cupiditate soluta. Error mollitia minus assumenda repellat similique nesciunt.</p>
+        </div> -->
+        
     </div>
 {% endblock %}

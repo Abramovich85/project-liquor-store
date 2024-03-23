@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<img src="{% if product.image.url is not None %}{{ product.image.url }}{% endif %}" alt="Картитнка">
+<img src="{% if product.image.url is not None %}{{ product.image.url }}{% endif %}" alt="{{ product.name }}">
 <h1 class="product-card__title">{{ product.name }}</h1>
             <p class="product-card__text">{{ product.description }}</p>
             <div class="product-card__prices-container">
