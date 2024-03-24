@@ -75,10 +75,9 @@
                         <div class="col-lg-4 col-sm-6 order-md-1 mt-2 mt-md-0">
                             <form action="">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="s" placeholder="Searching..." aria-label="Searching..." aria-describedby="button-search">
+                                    <input type="text" class="form-control" name="s" placeholder="Поиск..." aria-label="Searching..." aria-describedby="button-search">
                                     <button class="btn btn-outline-warning" type="submit" id="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                   </div>
-                                  
                             </form>
                         </div>
                     </div>
@@ -100,7 +99,7 @@
                             Dropdown button
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-dismiss="offcanvas">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
@@ -128,16 +127,16 @@
                                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="#">О нас</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href="#">Контакты</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Payment</a>
+                                <a class="nav-link" href="#">Оплата</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Delivery</a>
+                                <a class="nav-link" href="#">Доставка</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -179,10 +178,50 @@
         </main>
 <!-- Main end -->
 <!-- Footer start -->
-<footer class="footer">Footer</footer>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-6">
+                <h4>Информация</h4>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="#">Доставка</a></li>
+                    <li><a href="#">Оплата</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-6">
+                <h4>Часы работы</h4>
+                <ul class="list-unstyled">
+                    <li>Набережные Челны, пр-т Московский, 120</li>
+                    <li>Пн-Пт: 09:00 - 21:00</li></li>
+                    <li>Сб-Вс: 10:00 - 22:00</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-6">
+                <h4>Контакты</h4>
+                <ul class="list-unstyled">
+                    <li><a href="tel:+79063232241">8(906)323-22-41</a></li>
+                    <li><a href="tel:+74122323609">8(412)232-36-09</a></li>
+                    <li><a href="mailto:Z6b7s@example.com">Z6b7s@example.com</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-6">
+                <h4>О нас</h4>
+                <ul class="footer-icons">
+                    <li><a href="#"><i class="fa-brands fa-vk"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 <!-- Footer end -->
 </div>
-
+<button class="back-to-top" title="Наверх">
+    <i class="fa-solid fa-angles-up"></i>
+</button>
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>

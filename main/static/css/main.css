@@ -93,6 +93,8 @@ section {
 .section-title span {
   background-color: var(--bg-color);
   padding-right: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .section-title::after {
@@ -102,7 +104,7 @@ section {
   top: 50%;
   left: 0;
   border: 1px dashed var(--text-color);
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 /* ============================================= General rules end =============================================== */
@@ -319,6 +321,72 @@ ul.social-icons a:hover {
 
 
 /* ============================================= Full products end =============================================== */
+
+/* ============================================= About us start =============================================== */
+.about-us {
+  background-color: #fff;
+}
+
+.about-us .section-title span {
+  background-color: #fff;
+}
+/* ============================================= About us end =============================================== */
+
+/* ============================================= Footer start =============================================== */
+footer {
+  background-color: var(--contrast-color);
+  padding: 50px 0;
+  color: #fff;
+}
+
+footer h4 {
+  color: var(--accent-color);
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+footer a:hover {
+  color: var(--accent-color);
+}
+
+.footer-icons {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  font-size: 20px;
+}
+/* ============================================= Footer end =============================================== */
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: .5;
+  background-color: var(--accent-color);
+  color: #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  border: 0;
+  font-size: 25px;
+  transition: all .5s;
+  z-index: 10;
+  display: none;
+}
+
+.back-to-top--show {
+  display: block;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+}
+
 
 /* ============================================= Main rules end =============================================== */
 

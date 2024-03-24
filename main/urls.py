@@ -11,4 +11,5 @@ urlpatterns = [
         views.add_to_basket_view,
         name='add_to_basket'
     ),
+    path('basket/', views.basket_view, name='basket'),
 ]
