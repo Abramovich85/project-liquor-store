@@ -66,10 +66,14 @@
                                 <i class="fa-solid fa-heart"></i>
                                 <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
                             </a>
-                            <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <a href="{% url 'basket' %}"class="btn p-1">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">{{quantities}}</span>
+                            </a>
+                            <!-- <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-                            </button>
+                            </button> -->
                         </div>
 
                         <div class="col-lg-4 col-sm-6 order-md-1 mt-2 mt-md-0">
