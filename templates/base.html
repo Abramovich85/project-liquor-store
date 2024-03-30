@@ -20,7 +20,7 @@
         <!-- Header start -->
         <header class="header">
             <div class="header-top py-1"><!--header-top start-->
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row">
                         <div class="col-6 col-sm-4">
                             <div class="header-top-phone d-flex align-items-center h-100">
@@ -51,32 +51,15 @@
                     </div>
                 </div>
             </div><!-- "header-top" end-->
-
             <div class="header-middle bg-white py-4"><!--header-middle start-->
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row align-items-center">
 
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="col-sm-6">
                             <a href="{% url 'home' %}" class="header-logo h1">Wine 
                                 boutique</a>
                         </div>
-                     
-                        <div class="col-lg-4 order-md-2 cart-buttons text-end d-none d-lg-block">
-                            <a href="#"class="btn p-1">
-                                <i class="fa-solid fa-heart"></i>
-                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-                            </a>
-                            <a href="{% url 'basket' %}"class="btn p-1">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">{{quantities}}</span>
-                            </a>
-                            <!-- <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-                            </button> -->
-                        </div>
-
-                        <div class="col-lg-4 col-sm-6 order-md-1 mt-2 mt-md-0">
+                        <div class="col-sm-6 mt-2 mt-md-0">
                             <form action="">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="s" placeholder="Поиск..." aria-label="Searching..." aria-describedby="button-search">
@@ -87,35 +70,10 @@
                     </div>
                 </div>
             </div><!--header-middle end-->
-
-               <!-- Offcanvas start -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasCartLabel">Offcanvas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                    </div>
-                    <div class="dropdown mt-3">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" data-bs-dismiss="offcanvas">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> <!-- Offcanvas end-->
-            
         </header>
-        <!--Пришлось вынести header-bottom за пределы header дабы отрабатывал sticky-top-->
         <div class="header-bottom sticky-top" id="header-nav"><!--header-bottom start-->
             <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-                <div class="container-fluid">
+                <div class="container">
                   <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -131,10 +89,10 @@
                                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">О нас</a>
+                                <a class="nav-link" href="#about">О нас</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Контакты</a>
+                                <a class="nav-link" href="#footer">Контакты</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Оплата</a>
@@ -154,27 +112,24 @@
                                     <li><a class="dropdown-item" href="#">Шампанское</a></li>
                                     <li><a class="dropdown-item" href="#">Безалкогольное</a></li>
                                 </ul>
-                            </li>                        
+                            </li>
                         </ul>
                     </div>
                   </div>
-                    <div class="d-block d-lg-none">
+                    <div>
                         <a href="#"class="btn p-1">
                             <i class="fa-solid fa-heart"></i>
                             <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
     
                         </a>
-                        <button class="btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                        <a href="{% url 'basket' %}"class="btn p-1">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-                        </button>
+                            <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">{{quantities}}</span>
+                        </a>
                     </div>
-                    
-                </div><!--container-fluid end-->
+                </div><!--container end-->
               </nav>
         </div><!--header-bottom end-->
-        <!-- Header end -->
-        
         <!-- Main start -->
         <main class="main">
         {% block content %}
@@ -182,8 +137,8 @@
         </main>
 <!-- Main end -->
 <!-- Footer start -->
-<footer class="footer">
-    <div class="container-fluid">
+<footer class="footer" id="footer">
+    <div class="container">
         <div class="row">
             <div class="col-md-3 col-6">
                 <h4>Информация</h4>
@@ -191,7 +146,7 @@
                     <li><a href="{% url 'home' %}">Главная</a></li>
                     <li><a href="#">Доставка</a></li>
                     <li><a href="#">Оплата</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#footer">Контакты</a></li>
                 </ul>
             </div>
             <div class="col-md-3 col-6">
