@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Categories
 
 def get_basket_quantity(request: HttpRequest):
     items = request.session.get('basket', [])
@@ -9,11 +9,19 @@ def get_basket_quantity(request: HttpRequest):
 
     return quantities
 def index_page(request: HttpRequest):
+
+    catigories = Categories.objects.all()
+
     products = Product.objects.filter(is_active=True)
     products = products.order_by('-count')
 
-    return HttpResponse( render(request, 'main.html', {'products': products, 'quantities': get_basket_quantity(request),
-    }))
+    context = {
+        'products': products,
+        'quantities': get_basket_quantity(request), 
+        'catigories': catigories
+    }
+
+    return HttpResponse( render(request, 'main.html', context))
 
 def get_product_for_view(id: int):
     try:

@@ -39,14 +39,15 @@
                             <div class="header-top-account d-flex justify-content-end">
                                 <div class="dropdown">
                                     <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                      Account
+                                      Профиль
                                     </button>
                                     <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">Sig In</a></li>
-                                      <li><a class="dropdown-item" href="#">Sig Up</a></li>
+                                      <li><a class="dropdown-item" href="{% url "admin:index" %}">Админ панель</a></li>
+                                      <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
+                                      <li><a class="dropdown-item" href="{% url "basket" %}">Корзина</a></li>
                                     </ul>
                                 </div>
-                            </div>                           
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,13 +105,10 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                     Каталог Вина
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">   
-                                    <li><a class="dropdown-item" href="#">Белое</a></li>
-                                    <li><a class="dropdown-item" href="#">Красное</a></li>
-                                    <li><a class="dropdown-item" href="#">Розовое</a></li>
-                                    <li><a class="dropdown-item" href="#">Игристое</a></li>
-                                    <li><a class="dropdown-item" href="#">Шампанское</a></li>
-                                    <li><a class="dropdown-item" href="#">Безалкогольное</a></li>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    {% for catigory in catigories %}
+                                        <li><a class="dropdown-item" href="{% url "products" %}">{{catigory.name}}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </li>
                         </ul>

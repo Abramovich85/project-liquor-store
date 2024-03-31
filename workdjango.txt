@@ -3,3 +3,10 @@ python manage.py runserver -старт сервера
 python manage.py makemigrations -создает файл для перехода базы данных в новое состояние
 
 python manage.py migrate - применяет этот код
+
+--------------------------------------------
+python3 manage.py dumpdata main.Product > main/fixtures/prod.json -создание слепка таблицы с названием Product из базы данных в формате json
+
+python3 manage.py loaddata  main/fixtures/prod.json - заполнение таблицы из json файла
+
+---------------------------------------------

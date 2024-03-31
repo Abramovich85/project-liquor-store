@@ -13,13 +13,15 @@
         {% for item in items %}
         <li>
             <div class="basket-item">
-                <a href="{% url 'product' item.product.id %}" >
-                    <img
-                        class="basket-item__image"
-                        src="{% if item.product.image.url is not None %}{{ item.product.image.url }}{% endif %}"
-                        alt="{{ item.product.title }}"
-                    />
-                </a>
+                <div class="product-thumb">
+                    <a href="{% url 'product' item.product.id %}" >
+                        <img
+                            class="basket-item__image"
+                            src="{% if item.product.image.url is not None %}{{ item.product.image.url }}{% endif %}"
+                            alt="{{ item.product.title }}"
+                        />
+                    </a>
+                </div>   
                 <div class="basket-item__quantity">
                     {{ item.quantity }}
                 </div>

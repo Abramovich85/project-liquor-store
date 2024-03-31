@@ -1,0 +1,58 @@
+[
+    {
+        "model": "main.categories",
+        "pk": 1,
+        "fields": {
+            "name": "Все товары",
+            "slug": "all"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 2,
+        "fields": {
+            "name": "Белое",
+            "slug": "beloe"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 3,
+        "fields": {
+            "name": "Красное",
+            "slug": "krasnoe"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 4,
+        "fields": {
+            "name": "Розовое",
+            "slug": "rozovoe"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 5,
+        "fields": {
+            "name": "Игристое",
+            "slug": "igristoe"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 6,
+        "fields": {
+            "name": "Шампанское",
+            "slug": "shampanskoe"
+        }
+    },
+    {
+        "model": "main.categories",
+        "pk": 7,
+        "fields": {
+            "name": "Безалкогольное",
+            "slug": "bezalkogolnoe"
+        }
+    }
+]

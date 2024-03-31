@@ -19,15 +19,23 @@
     margin-bottom: 1em;
 }
 
-.basket-item__image {
-    display: block;
-    width: 100px;
-    height: 100px;
-}
+img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-thumb {
+    text-align: center;
+  }
+  
+  .product-thumb img {
+    max-height: 100px;
+  }
 
 .basket-total {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
 .basket-total__price {

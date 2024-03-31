@@ -21,6 +21,7 @@ from app.settings import MEDIA_ROOT, MEDIA_URL
 
 from main.urls import urlpatterns as main
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
