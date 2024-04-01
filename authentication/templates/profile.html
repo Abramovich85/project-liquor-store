@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Профиль{% endblock %}
+
+
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<form action="/auth/logout/?next=/auth/login/" method="post">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+</form>
+
+{% endblock %}

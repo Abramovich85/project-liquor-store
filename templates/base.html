@@ -42,9 +42,13 @@
                                       Профиль
                                     </button>
                                     <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="{% url "admin:index" %}">Админ панель</a></li>
-                                      <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
-                                      <li><a class="dropdown-item" href="{% url "basket" %}">Корзина</a></li>
+                                      <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
+                                      {% if user.is_authenticated %}
+                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Личный кабинет</a></li>
+                                      {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a></li>
+                                      {% endif %}
+                                      <li><a class="dropdown-item" href="{% url 'basket' %}">Корзина</a></li>
                                     </ul>
                                 </div>
                             </div>

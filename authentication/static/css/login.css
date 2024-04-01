@@ -1,0 +1,28 @@
+.input-group {
+    margin-bottom: 1em;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-errors {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #e10000;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forgot-password-link-container {
+    text-align: center;
+}

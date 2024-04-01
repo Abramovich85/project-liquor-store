@@ -20,11 +20,12 @@ from django.conf.urls.static import static
 from app.settings import MEDIA_ROOT, MEDIA_URL, DEBUG 
 
 from main.urls import urlpatterns as main
-
+from authentication.urls import urlpatterns as auth_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
+    path('', include(auth_urls)),
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if DEBUG:

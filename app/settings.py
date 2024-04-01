@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
 
     'main',
+    'authentication',
 ]
 
 MIDDLEWARE = [
