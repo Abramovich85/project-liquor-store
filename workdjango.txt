@@ -10,3 +10,5 @@ python3 manage.py dumpdata main.Product > main/fixtures/prod.json -создан�
 python3 manage.py loaddata  main/fixtures/prod.json - заполнение таблицы из json файла
 
 ---------------------------------------------
+дебаг панелька:
+pip install django-debug-toolbar

@@ -106,8 +106,8 @@
                                     Каталог Вина
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    {% for catigory in catigories %}
-                                        <li><a class="dropdown-item" href="{% url "products" %}">{{catigory.name}}</a></li>
+                                    {% for category in categories %}
+                                        <li><a class="dropdown-item" href="{% url "products" %}">{{category.name}}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>

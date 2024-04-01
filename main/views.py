@@ -10,7 +10,7 @@ def get_basket_quantity(request: HttpRequest):
     return quantities
 def index_page(request: HttpRequest):
 
-    catigories = Categories.objects.all()
+    categories = Categories.objects.all()
 
     products = Product.objects.filter(is_active=True)
     products = products.order_by('-count')
@@ -18,7 +18,7 @@ def index_page(request: HttpRequest):
     context = {
         'products': products,
         'quantities': get_basket_quantity(request), 
-        'catigories': catigories
+        'categories': categories
     }
 
     return HttpResponse( render(request, 'main.html', context))
