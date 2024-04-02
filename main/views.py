@@ -8,10 +8,14 @@ def get_basket_quantity(request: HttpRequest):
     quantities = sum([item['quantity'] for item in items])
 
     return quantities
-def index_page(request: HttpRequest):
+def index_page(request: HttpRequest,category_slug='all'):
 
-    products = Product.objects.filter(is_active=True)
-    products = products.order_by('-count')
+    if category_slug == 'all':
+        products = Product.objects.filter(is_active=True)
+        products = products.order_by('-count')
+    else:
+        products = Product.objects.filter(category__slug=category_slug, is_active=True)
+        products = products.order_by('-count')
 
     context = {
         'products': products,
