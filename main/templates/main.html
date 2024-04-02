@@ -72,7 +72,7 @@
                         <div class="product-card">
                             {% if product.original_price is not None %}
                                 <div class="product-card-offer">
-                                    <div class="offer-sale">Sale</div>
+                                    <div class="offer-sale">{{product.sell_price}}<i class="fa-thin fa-percent"></i></div>
                                 </div>
                             {% endif %}
                             <div class="product-thumb">

@@ -1,56 +1,33 @@
-.product-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+:root{
+    --bg-color:#f5f5f5;
+    --text-color:#6c757d;
+    --accent-color: #ffd333; 
+    --contrast-color: #3d464d;
+    --gray-color: #ccc;
+    --red-color: #ee6e73;
+    --light-grey-color: #eee;
+  }
+
+.title-span {
+    color: var(--text-color);
 }
 
-.product__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.id-product {
+    color: var(--gray-color);
 }
 
-.product__title {
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 0.5em;
+.product-name {
+    color: var(--contrast-color);
 }
 
-.product__original-price {
-    text-decoration: line-through;
+.product__original-price{
+  color: var(--gray-color);
+  font-weight: 400;
+  text-decoration: line-through;
 }
 
-.product__field {
-    text-align: center;
-}
-
-.product__price-container {
-    margin-bottom: 1em;
-}
-
-.product__prices-heading {
-    margin-bottom: 0.5em;
-}
-
-.product__add-to-basket-form {
-    margin-bottom: 1em;
-}
-
-.product__add-to-basket-button {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0.3em;
-    outline: 1px solid black;
-    border-radius: 0.3em;
-}
-
-.product__add-to-basket-button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.product__add-to-basket-button[disabled]:hover {
-    background-color: transparent;
-    cursor: not-allowed;
+.product__price {
+  font-size: 18px;
+  color: var(--red-color);
+  font-weight: 600;
 }

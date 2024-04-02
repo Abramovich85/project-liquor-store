@@ -36,3 +36,10 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} Количество: {self.count}'
 
+    def display_id(self):
+        return f'{self.id:05}'
+
+    def sell_price(self):
+        if self.original_price is not None:
+            return round((self.original_price / self.price) * 100 - 100) 
+        return self.price
