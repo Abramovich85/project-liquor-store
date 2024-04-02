@@ -32,10 +32,17 @@ def get_product_for_view(id: int):
     return product
 
 
-def product_view(request: HttpRequest, id: int):
+def product_view(request: HttpRequest, id=False, product_slug=False):
 
+    if id:
+        product = get_product_for_view(id=id)
+    else:
+        product = Product.objects.get(slug=product_slug)
+
+    if not product.is_active:
+        raise Http404('Товар не доступен')
     return HttpResponse(render(request, 'product.html', {
-        'product': get_product_for_view(id=id),
+        'product': product,
         'quantities': get_basket_quantity(request),
     }))
 

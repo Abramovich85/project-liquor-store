@@ -76,7 +76,7 @@
                                 </div>
                             {% endif %}
                             <div class="product-thumb">
-                                <a href="{% url 'product' product.id %}">
+                                <a href="{% url 'product' product.slug %}">
                                     <img 
                                         src="{% if product.image.url is not None %}{{ product.image.url }}{% endif %}" 
                                         alt="{{ product.name }}"
@@ -85,7 +85,7 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="{% url 'product' product.id %}">{{product.name}}</a>
+                                    <a href="{% url 'product' product.slug %}">{{product.name}}</a>
                                 </h4>
                                 <p class="product-excerpt">{{product.description}}</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
