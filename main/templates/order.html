@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Ваш заказ{% endblock %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Ваш заказ:</h2>
+
+{% for item in products %}
+<p>{{ item.product.title }} ({{ item.product.price }} руб) - {{ item.quantity }} шт.</p>
+{% endfor %}
+
+<p>Итого: {{ order_sum }} руб</p>
+
+<p>Спасибо, что покупаете у нас!</p>
+
+{% endblock %}
