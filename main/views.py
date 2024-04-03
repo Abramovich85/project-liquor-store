@@ -1,6 +1,7 @@
+from django.core.paginator import Paginator
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Categories
 
 def get_basket_quantity(request: HttpRequest):
     items = request.session.get('basket', [])
@@ -8,7 +9,9 @@ def get_basket_quantity(request: HttpRequest):
     quantities = sum([item['quantity'] for item in items])
 
     return quantities
-def index_page(request: HttpRequest,category_slug='all'):
+def index_page(request: HttpRequest,category_slug='all', page=1):
+
+    title_text = Categories.objects.get(slug=category_slug).name
 
     if category_slug == 'all':
         products = Product.objects.filter(is_active=True)
@@ -17,9 +20,14 @@ def index_page(request: HttpRequest,category_slug='all'):
         products = Product.objects.filter(category__slug=category_slug, is_active=True)
         products = products.order_by('-count')
 
+    paginator = Paginator(products, 8)
+    current_page = paginator.page(page)
+
     context = {
-        'products': products,
-        'quantities': get_basket_quantity(request), 
+        'products': current_page,
+        'quantities': get_basket_quantity(request),
+        'title_text': title_text,
+        'slug_url': category_slug
     }
 
     return HttpResponse( render(request, 'main.html', context))
@@ -77,7 +85,7 @@ def add_to_basket_view(request: HttpRequest, id: int):
     return redirect('home')
 
 
-def basket_view(request: HttpRequest):
+def basket_view(request: HttpRequest,):
     items = request.session.get('basket', [])
 
     for item in items:

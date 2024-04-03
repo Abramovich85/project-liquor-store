@@ -14,7 +14,7 @@
         <li>
             <div class="basket-item">
                 <div class="product-thumb">
-                    <a href="{% url 'product' item.product.id %}" >
+                    <a href="{% url 'product' item.product.slug %}" >
                         <img
                             class="basket-item__image"
                             src="{% if item.product.image.url is not None %}{{ item.product.image.url }}{% endif %}"
