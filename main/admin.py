@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Categories
+from .models import Order, Product, Categories
 # Register your models here.
 
 # admin.site.register(Product)
@@ -14,3 +14,5 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+
+admin.site.register(Order)
