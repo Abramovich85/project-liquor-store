@@ -14,6 +14,8 @@ def get_basket_quantity(request: HttpRequest):
 def index_page(request: HttpRequest,category_slug='all'):
 
     page = request.GET.get('page', 1)
+    on_sale = request.GET.get('on_sale', None)
+    order_by = request.GET.get('order_by', None)
 
     title_text = Categories.objects.get(slug=category_slug).name
 
@@ -23,6 +25,12 @@ def index_page(request: HttpRequest,category_slug='all'):
     else:
         products = Product.objects.filter(category__slug=category_slug, is_active=True)
         products = products.order_by('-count')
+
+    if on_sale:
+        products = products.filter(original_price__isnull=False)
+
+    if order_by and order_by != 'default':
+        products = products.order_by(order_by)
 
     paginator = Paginator(products, 8)
     current_page = paginator.page(page)

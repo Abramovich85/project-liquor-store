@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load main_tags %}
 {% block title %}Винный Бутик{% endblock %}
 {% block head%}
 {% endblock %}
@@ -66,9 +67,49 @@
                     </h2>
                 </div>
             </div>
+            <!-- Filter button -->
+            <div class="dropdown mb-3">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Фильтры
+                </button>
+                
+                <form action="{% url "products" slug_url %}" method="get" class="dropdown-menu bg-secondary" data-bs-theme="dark">
+                    <div class="form-check text-white mx-3">
+                        <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+                        {% comment %} <input type="hidden" name="q" value="request.GET.q"> {% endcomment %}
+                        <label class="form-check-lable" for="flexCheckDefault">
+                            Товары со скидкой
+                        </label>
+                    </div>
+                    <p class="text-white mx-3 mt-3">Сортировать по:</p>
+                    <div class="form-check text-white mx-3">
+                        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default"
+                        {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked{% endif %}>
+                        <label class="form-check-lable" for="flexRadioDefault1">
+                            По умолчанию
+                        </label>
+                    </div>
+                    <div class="form-check text-white mx-3">
+                        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price"
+                        {% if request.GET.order_by == 'price' %}checked{% endif %}>
+                        <label class="form-check-lable" for="flexRadioDefault2">
+                            От дешевых к дорогим
+                        </label>
+                    </div>
+                    <div class="form-check text-white mx-3">
+                        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price"
+                        {% if request.GET.order_by == '-price' %}checked{% endif %}>
+                        <label class="form-check-lable" for="flexRadioDefault3">
+                            От дорогих к дешевым
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary mx-3 mt-3">Применить</button>
+                </form>
+            </div>
             <div class="row">
                 {% for product in products %}
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                        {% comment %} Product card {% endcomment %}
                         <div class="product-card">
                             {% if product.original_price is not None %}
                                 <div class="product-card-offer">
@@ -114,30 +155,28 @@
             </div>
         </div>
     </section>
+    {% comment %} Pagination {% endcomment %}
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item {% if not products.has_previous %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_previous %}?page={{products.previous_page_number}}{% else %}
-            #
-            {% endif %}">Назад</a>
+            <a class="page-link" href=" {% if products.has_previous %}?{% change_params page=products.previous_page_number %}{% else %}#{% endif %}">Назад</a>
           </li>
 
           {% for page in products.paginator.page_range %}
           {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
             <li class="page-item {% if products.number == page %} active {% endif %}">
-                <a class="page-link" href="?page={{page}}">{{page}}</a>
+                <a class="page-link" href="?{% change_params page=page %}">{{page}}</a>
             </li>
           {% endif %}
           {% endfor %}
 
 
           <li class="page-item {% if not products.has_next %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_next %}?page={{products.next_page_number}}{% else %}
-            #
-            {% endif %}">Вперёд</a>
+            <a class="page-link" href=" {% if products.has_next %}?{% change_params page=products.next_page_number %}{% else %}#{% endif %}">Вперёд</a>
           </li>
         </ul>
     </nav>
+    {% comment %} Section About US {% endcomment %}
     <section class="about-us" id="about">
         <div class="container">
             <div class="row mb-5">
