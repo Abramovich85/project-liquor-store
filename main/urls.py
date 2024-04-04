@@ -10,7 +10,6 @@ urlpatterns = [
     path('order/<int:id>/', views.get_order_view, name='get_order'),
     path('product/<int:id>/', views.product_view, name='product'),
     path('<slug:category_slug>/', views.index_page, name='products'),
-    path('<slug:category_slug>/<int:page>/', views.index_page, name='products'),
     path('product/<slug:product_slug>/', views.product_view, name='product'),
     path('product/<int:id>/add/', views.add_to_basket_view, name='add_to_basket'),
 

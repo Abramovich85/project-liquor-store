@@ -11,7 +11,9 @@ def get_basket_quantity(request: HttpRequest):
     quantities = sum([item['quantity'] for item in items])
 
     return quantities
-def index_page(request: HttpRequest,category_slug='all', page=1):
+def index_page(request: HttpRequest,category_slug='all'):
+
+    page = request.GET.get('page', 1)
 
     title_text = Categories.objects.get(slug=category_slug).name
 

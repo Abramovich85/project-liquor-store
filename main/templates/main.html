@@ -117,9 +117,7 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item {% if not products.has_previous %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_previous %}
-            {% url 'products' slug_url products.previous_page_number %}
-            {% else %}
+            <a class="page-link" href=" {% if products.has_previous %}?page={{products.previous_page_number}}{% else %}
             #
             {% endif %}">Назад</a>
           </li>
@@ -127,16 +125,14 @@
           {% for page in products.paginator.page_range %}
           {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
             <li class="page-item {% if products.number == page %} active {% endif %}">
-                <a class="page-link" href="{% url 'products' slug_url page %}">{{page}}</a>
+                <a class="page-link" href="?page={{page}}">{{page}}</a>
             </li>
           {% endif %}
           {% endfor %}
 
 
           <li class="page-item {% if not products.has_next %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_next %}
-            {% url 'products' slug_url products.next_page_number %}
-            {% else %}
+            <a class="page-link" href=" {% if products.has_next %}?page={{products.next_page_number}}{% else %}
             #
             {% endif %}">Вперёд</a>
           </li>
