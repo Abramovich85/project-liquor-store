@@ -69,14 +69,16 @@
             </div>
             <!-- Filter button -->
             <div class="dropdown mb-3">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Фильтры
                 </button>
                 
-                <form action="{% url "products" slug_url %}" method="get" class="dropdown-menu bg-secondary" data-bs-theme="dark">
+                <form action="{% if request.GET.q %}{% url "search" %}{% else %}{% url "products" slug_url %}{% endif %}" method="get" class="dropdown-menu bg-secondary" data-bs-theme="dark">
                     <div class="form-check text-white mx-3">
-                        <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
-                        {% comment %} <input type="hidden" name="q" value="request.GET.q"> {% endcomment %}
+                        <input class="form-check-input filter_input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+                        {% if request.GET.q %}
+                            <input type="hidden" name="q" value="{{ request.GET.q }}">
+                        {% endif %}
                         <label class="form-check-lable" for="flexCheckDefault">
                             Товары со скидкой
                         </label>
@@ -103,7 +105,7 @@
                             От дорогих к дешевым
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary mx-3 mt-3">Применить</button>
+                    <button type="submit" class="btn btn-outline-light mx-3 mt-3">Применить</button>
                 </form>
             </div>
             <div class="row">
@@ -111,6 +113,9 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                         {% comment %} Product card {% endcomment %}
                         <div class="product-card">
+                            <div class="id-product-container">
+                                <small class="id-product">id: {{product.display_id}}</small>
+                            </div>
                             {% if product.original_price is not None %}
                                 <div class="product-card-offer">
                                     <div class="offer-sale">{{product.sell_price}}<i class="fa-thin fa-percent"></i></div>

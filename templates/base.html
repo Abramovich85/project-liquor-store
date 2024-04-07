@@ -65,9 +65,9 @@
                                 boutique</a>
                         </div>
                         <div class="col-sm-6 mt-2 mt-md-0">
-                            <form action="">
+                            <form action="{% url 'search' %}" method="get" role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="s" placeholder="Поиск..." aria-label="Searching..." aria-describedby="button-search">
+                                    <input type="search" class="form-control" name="q" placeholder="Поиск..." aria-label="Search">
                                     <button class="btn btn-outline-warning" type="submit" id="button-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                   </div>
                             </form>

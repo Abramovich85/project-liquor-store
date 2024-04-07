@@ -227,7 +227,14 @@ ul.social-icons a:hover {
 /* ============================================= Carousel rules end =============================================== */
 
 /* ============================================= Full products start =============================================== */
+/* =============================================Filter button start =============================================== */
+.form-check-input:checked{
+  background-color: var(--accent-color);
+  border-color: var(--gray-color);
+}
 
+
+/* =============================================Filter button end =============================================== */
 /* ============================================= Product card start =============================================== */
 
 .product-card {
@@ -257,6 +264,11 @@ ul.social-icons a:hover {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 5px;
+}
+
+.id-product{
+  color: var(--gray-color);
+  padding: 5px;
 }
 
 .offer-sale {

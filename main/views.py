@@ -1,6 +1,8 @@
 from django.core.paginator import Paginator
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
+
+from main.utils import q_search
 from .models import Order, OrderProduct, Product, Categories
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
@@ -16,12 +18,20 @@ def index_page(request: HttpRequest,category_slug='all'):
     page = request.GET.get('page', 1)
     on_sale = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', None)
+    query = request.GET.get('q', None)
+
 
     title_text = Categories.objects.get(slug=category_slug).name
 
     if category_slug == 'all':
         products = Product.objects.filter(is_active=True)
         products = products.order_by('-count')
+        
+        if query:
+            products = q_search(query)
+
+    elif query:
+        products = q_search(query)
     else:
         products = Product.objects.filter(category__slug=category_slug, is_active=True)
         products = products.order_by('-count')
