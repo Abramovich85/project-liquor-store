@@ -60,7 +60,7 @@ class OrderProduct(models.Model):
     )
 
     def __str__(self):
-        return f'{self.quantity} of {self.product.title}'
+        return f'{self.quantity} of {self.product.name}'
 
 
 class Order(models.Model):
@@ -93,6 +93,14 @@ class Order(models.Model):
     )
 
     @property
+    def is_cancelable(self):
+        return self.status not in (
+            self.Status.CANCELED,
+            self.Status.DELIVERED,
+            self.Status.DELIVERING
+        )
+
+    @property
     def total_price(self):
         return sum([
             order_product.price * order_product.quantity
@@ -104,5 +112,5 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
     def __str__(self):
-        return f'Order on {str(self.product)}'
+        return f'Order from {str(self.user)}'
 
