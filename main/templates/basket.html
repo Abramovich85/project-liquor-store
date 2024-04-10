@@ -9,11 +9,18 @@
 
 {% block content %}
 <div class="container">
-    <ul class="basket-item-list">
+    <div class="row py-5"> 
+        <div class="col-12 mb-5">
+            <h2 class="section-title">
+                <span>Корзина:</span>
+            </h2>
+    </div>
+
+    <ul class="basket-item-list list-unstyled list-group">
         {% for item in items %}
-        <li>
-            <div class="basket-item">
-                <div class="product-thumb">
+        <li class="list-group-item d-flex flex-row">
+            <div class="basket-item col-12">
+                <div class="product-thumb col-1">
                     <a href="{% url 'product' item.product.slug %}" >
                         <img
                             class="basket-item__image"
@@ -21,26 +28,27 @@
                             alt="{{ item.product.title }}"
                         />
                     </a>
-                </div>   
-                <div class="basket-item__quantity">
+                </div>
+ 
+                <div class="d-flex justify-content-center col-4">
                     {{ item.quantity }}
                 </div>
-                <div class="basket-item__title">{{ item.product.name }}</div>
-                <div class="basket-item__price">{{ item.product.price }}</div>
+                <div class="d-flex justify-content-start col-6">{{ item.product.name }}</div>
+                <div class="d-flex justify-content-end col-1">{{ item.product.price }}</div>
             </div>
         </li>
         {% endfor %}
     </ul>
     <div class="basket-total">
-        <div>
-            <div class="basket-total__price"><span>Итого:</span><span class="basket-total__price-value">{{ total_price }}</span></div>
+        <div class="d-grid">
+            <div class="basket-total__price mt-2"><span>Итого:</span><span class="basket-total__price-value">{{ total_price }}</span></div>
             <form action="{% url 'make_order' %}" method="POST">
-                <button type="submit" class="btn btn-outline-secondary">
+                <button type="submit" class="btn btn-outline-secondary mb-2 btn-block">
                     {% csrf_token %}
-                    Оформить заказ
+                    &nbsp;&nbsp;Оформить заказ&nbsp;&nbsp;
                 </button>
             </form>
-            <a href="{% url 'basket_clear' %}" class="btn btn-outline-danger add-to-cart">Очистить корзину</a>
+            <a href="{% url 'basket_clear' %}" class="btn btn-outline-danger add-to-cart mb-5 btn-block">Очистить корзину</a>
         </div>
     </div>
 </div>

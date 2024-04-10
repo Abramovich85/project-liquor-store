@@ -94,17 +94,17 @@
                                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#about">О нас</a>
+                                <a class="nav-link" href="{% url 'home' %}#about">О нас</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#footer">Контакты</a>
                             </li>
-                            <li class="nav-item">
+                            {% comment %} <li class="nav-item">
                                 <a class="nav-link" href="#">Оплата</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Доставка</a>
-                            </li>
+                            </li> {% endcomment %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                     Каталог Вина
@@ -112,7 +112,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     {% tag_categories as categories %}
                                     {% for category in categories %}
-                                        <li><a class="dropdown-item" href="{% url "products" category.slug %}">{{category.name}}</a></li>
+                                        <li><a class="dropdown-item" href="{% url "products" category.slug %}#products">{{category.name}}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
@@ -120,11 +120,10 @@
                     </div>
                   </div>
                     <div>
-                        <a href="#"class="btn p-1">
+                        {% comment %} <a href="#"class="btn p-1">
                             <i class="fa-solid fa-heart"></i>
                             <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-    
-                        </a>
+                        </a> {% endcomment %}
                         <a href="{% url 'basket' %}"class="btn p-1">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">{{quantities}}</span>
