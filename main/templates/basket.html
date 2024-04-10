@@ -1,40 +1,129 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{{ product.name }}{% endblock %}
+{% load l10n %}
+{% block title %}Корзина{% endblock %}
 {% block head %}
 
 <link rel="stylesheet" href="{% static 'css/basket.css' %}">
 
+<script>
+    async function updateQuantity(csrfToken, productId, quantityElement) {
+      const url = `/product/${productId}/increase/`;
+  
+      const data = new FormData();
+      data.append("csrfmiddlewaretoken", csrfToken);
+  
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: new URLSearchParams(data),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Can't update");
+        }
+        
+        quantityElement.textContent = +quantityElement.textContent + 1;
+      });
+    }
+  
+    async function decreaseQuantity(csrfToken, productId, quantityElement, basketItemElement) {
+      const url = `/product/${productId}/decrease/`;
+  
+      const data = new FormData();
+      data.append("csrfmiddlewaretoken", csrfToken);
+  
+      return fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: new URLSearchParams(data),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Can't update");
+        }
+  
+        if (+quantityElement.textContent <= 1) {
+          basketItemElement.remove();
+          return;
+        }
+        
+        quantityElement.textContent = +quantityElement.textContent - 1;
+      });
+    }
+  
+    function updatePrice(priceElement, priceChange) {
+      console.log(priceElement.textContent);
+      
+      const newPrice = +priceElement.textContent + priceChange;
+      const newPriceText = newPrice.toFixed(2);
+  
+      priceElement.textContent = newPriceText;
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const totalPriceElement = document.querySelector(".basket-total__price-value");
+      const basketItems = document.querySelectorAll(".basket-item");
+      const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
+  
+      for (const basketItem of basketItems) {
+        const decreaseButton = basketItem.querySelector(".basket-item__quantity-decrease");
+        const increaseButton = basketItem.querySelector(".basket-item__quantity-increase");
+        const quantityElement = basketItem.querySelector(".basket-item__quantity");
+        const productId = basketItem.dataset.id;
+  
+        decreaseButton.addEventListener("click", async () => {
+          await decreaseQuantity(
+            csrfToken, productId, 
+            quantityElement, basketItem.closest(".basket-item-container")
+          )
+          
+          updatePrice(totalPriceElement, -+basketItem.dataset.price);
+        });
+        increaseButton.addEventListener("click", async () => {
+          await updateQuantity(csrfToken, productId, quantityElement);
+          updatePrice(totalPriceElement, +basketItem.dataset.price);
+        });
+      }
+    });
+  
+  
+  </script>
+
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container basket-container">
     <div class="row py-5"> 
         <div class="col-12 mb-5">
             <h2 class="section-title">
                 <span>Корзина:</span>
             </h2>
-    </div>
-
+        </div>
+    {% csrf_token %}
     <ul class="basket-item-list list-unstyled list-group">
         {% for item in items %}
-        <li class="list-group-item d-flex flex-row">
-            <div class="basket-item col-12">
+        <li class="list-group-item d-flex flex-row basket-item-container">
+            <div class="basket-item col-12" data-price="{{ item.product.price|unlocalize }}" data-id="{{ item.product.id }}">
                 <div class="product-thumb col-1">
                     <a href="{% url 'product' item.product.slug %}" >
                         <img
                             class="basket-item__image"
                             src="{% if item.product.image.url is not None %}{{ item.product.image.url }}{% endif %}"
-                            alt="{{ item.product.title }}"
+                            alt="{{ item.product.name }}"
                         />
                     </a>
                 </div>
  
-                <div class="d-flex justify-content-center col-4">
+                <div class="d-flex justify-content-center col-4 basket-item__quantity-container">
+                    <button class="button basket-item__quantity-change basket-item__quantity-decrease">-</button>
                     {{ item.quantity }}
+                    <button class="button basket-item__quantity-change basket-item__quantity-increase">+</button>
                 </div>
-                <div class="d-flex justify-content-start col-6">{{ item.product.name }}</div>
-                <div class="d-flex justify-content-end col-1">{{ item.product.price }}</div>
+                <div class="d-none d-md-block d-flex justify-content-start col-6 product_name basket-item__title">{{ item.product.name }}</div>
+                <div class="d-flex justify-content-end col-1 basket-item__price">{{ item.product.price | unlocalize }}</div>
             </div>
         </li>
         {% endfor %}
@@ -43,8 +132,8 @@
         <div class="d-grid">
             <div class="basket-total__price mt-2"><span>Итого:</span><span class="basket-total__price-value">{{ total_price }}</span></div>
             <form action="{% url 'make_order' %}" method="POST">
-                <button type="submit" class="btn btn-outline-secondary mb-2 btn-block">
-                    {% csrf_token %}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary mb-2 btn-block " {% if total_price < 1 %} disabled {% endif %}>
                     &nbsp;&nbsp;Оформить заказ&nbsp;&nbsp;
                 </button>
             </form>
