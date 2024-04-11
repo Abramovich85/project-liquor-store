@@ -43,6 +43,16 @@ img {
     display: flex;
     justify-content: space-between;
 }
+.btn-outline-secondary{
+    --bs-btn-border-color: none;
+    --bs-btn-font-size: 1.5rem; 
+}
+
+.btn-outline-secondary:hover {
+    color: #ffd333;
+    background-color: white;
+    border-color: none;
+  }
 
 @media (max-width: 600px) {
     .basket-item-list {

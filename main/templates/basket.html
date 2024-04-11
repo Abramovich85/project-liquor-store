@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/basket.css' %}">
 
 <script>
+
     async function updateQuantity(csrfToken, productId, quantityElement) {
       const url = `/product/${productId}/increase/`;
   
@@ -117,10 +118,10 @@
                     </a>
                 </div>
  
-                <div class="d-flex justify-content-center col-4 basket-item__quantity-container">
-                    <button class="button basket-item__quantity-change basket-item__quantity-decrease">-</button>
-                    {{ item.quantity }}
-                    <button class="button basket-item__quantity-change basket-item__quantity-increase">+</button>
+                <div class="d-flex justify-content-center col-4 align-items-center basket-item__quantity-container">
+                    <button class="btn btn-outline-secondary basket-item__quantity-change basket-item__quantity-decrease"><i class="fa-sharp fa-regular fa-square-minus"></i></button>
+                    <div class="px-2 basket-item__quantity">{{ item.quantity }}</div>
+                    <button class="btn btn-outline-secondary basket-item__quantity-change basket-item__quantity-increase"><i class="fa-sharp fa-regular fa-square-plus"></i></button>
                 </div>
                 <div class="d-none d-md-block d-flex justify-content-start col-6 product_name basket-item__title">{{ item.product.name }}</div>
                 <div class="d-flex justify-content-end col-1 basket-item__price">{{ item.product.price | unlocalize }}</div>
@@ -130,10 +131,10 @@
     </ul>
     <div class="basket-total">
         <div class="d-grid">
-            <div class="basket-total__price mt-2"><span>Итого:</span><span class="basket-total__price-value">{{ total_price }}</span></div>
+            <div class="basket-total__price mt-2"><span>Итого:</span><span class="basket-total__price-value">{{ total_price|unlocalize }}</span></div>
             <form action="{% url 'make_order' %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary mb-2 btn-block " {% if total_price < 1 %} disabled {% endif %}>
+                <button type="submit" class="btn btn-secondary mb-2 btn-block basket-total__buy-button" {% if items|length == 0 %} disabled {% endif %}>
                     &nbsp;&nbsp;Оформить заказ&nbsp;&nbsp;
                 </button>
             </form>

@@ -24,7 +24,7 @@ class Product(models.Model):
         max_digits=10, decimal_places=2, null=True, blank=True, verbose_name='Цена без скидки(зачёркнутое)'
         )
     count = models.IntegerField(default=0, verbose_name='Количество')
-    category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
+    category = models.ManyToManyField(Categories,verbose_name='Категория')
     is_active = models.BooleanField(default=True, verbose_name='Активен')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлен')

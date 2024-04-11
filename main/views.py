@@ -135,7 +135,6 @@ def basket_view(request: HttpRequest,):
     return HttpResponse(render(request, 'basket.html', {
         'items': items,
         'total_price': total_price,
-        'quantities': get_basket_quantity(request),
     }))
 
 def basket_clear_view(request: HttpRequest):

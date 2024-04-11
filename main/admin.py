@@ -14,6 +14,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    filter_vertical = ('category',)
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
