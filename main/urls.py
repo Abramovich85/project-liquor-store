@@ -24,6 +24,10 @@ urlpatterns = [
         'order/<int:id>/', 
         views.get_order_view, 
         name='get_order'),
+    path(
+        'order/<int:id>/cancel/', 
+        views.cancel_order_view, 
+        name='cancel_order'),
     
     path(
         'product/<int:id>/', 

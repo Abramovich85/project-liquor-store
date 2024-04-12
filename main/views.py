@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.http import Http404, HttpResponse, HttpRequest
+from django.http import Http404, HttpResponse, HttpRequest, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from main.utils import q_search
 from .models import Order, OrderProduct, Product, Categories
@@ -107,6 +107,7 @@ def basket_add_view(request: HttpRequest, id: int):
 
 def basket_increase_view(request: HttpRequest, id: int):
     items = request.session.get('basket', [])
+    product = get_product_for_view(id=id)
 
     found_item = next(
         (item for item in items if item['product_id'] == id),
@@ -115,7 +116,10 @@ def basket_increase_view(request: HttpRequest, id: int):
 
     if found_item is None:
         raise Http404('Товар не найден')
-
+    
+    if product.count < found_item['quantity'] + 1:
+        raise HttpRequest('Товар закончился', status=400)
+    
     found_item['quantity'] = found_item['quantity'] + 1
 
     request.session['basket'] = items
@@ -179,12 +183,19 @@ def order_view(request: HttpRequest):
 
         if len(basket) == 0:
             return redirect('basket')
+        
+        for item in basket:
+            product = Product.objects.get(id=item['product_id'])
+            if item['quantity'] > product.count:
+                return HttpResponseBadRequest('Товара недостаточно на складе')
 
         for item in basket:
             order_product = OrderProduct(order=order)
             order_product.product = Product.objects.get(id=item['product_id'])
             order_product.quantity = item['quantity']
+            order_product.product.count -= order_product.quantity 
             order_product.price = order_product.product.price
+            order_product.product.save()
             order_product.save()
 
         request.session.update({'basket': []})
@@ -204,3 +215,31 @@ def get_order_view(request: HttpRequest, id: int):
         'products': OrderProduct.objects.filter(order=order),
         'quantities': get_basket_quantity(request),
     }))
+
+@require_http_methods(["GET"])
+def cancel_order_view(request: HttpRequest, id: int):
+    try:
+        order = Order.objects.get(id=id)
+    except Order.DoesNotExist:
+        raise Http404('Заказ не найден')
+
+    if order.user != request.user:
+        return HttpResponseBadRequest(
+            'Вы не можете отменить этот заказ',
+            status='403'
+        )
+
+    if not order.is_cancelable:
+        return HttpResponseBadRequest(
+            'Этот заказ уже нельзя отменить. Обратитесь к администратору.',
+            status='400'
+        )
+
+    for order_product in OrderProduct.objects.filter(order=order):
+        order_product.product.count += order_product.quantity
+        order_product.product.save()
+
+    order.status = Order.Status.CANCELED
+    order.save()
+
+    return redirect('profile')
