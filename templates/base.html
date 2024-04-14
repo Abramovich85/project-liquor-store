@@ -30,11 +30,11 @@
                             </div>
                         </div>
                         <div class="col-sm-4 d-none d-sm-block">
-                            <ul class="social-icons d-flex justify-content-center">
+                            {% comment %} <ul class="social-icons d-flex justify-content-center">
                                 <li><a href="#"><i class="fa-brands fa-vk"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                                 <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            </ul>
+                            </ul> {% endcomment %}
                         </div>
                         <div class="col-6 col-sm-4">
                             <div class="header-top-account d-flex justify-content-end">
@@ -43,7 +43,9 @@
                                       Профиль
                                     </button>
                                     <ul class="dropdown-menu">
+                                      {% if user.is_superuser %}  
                                       <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
+                                      {% endif %}
                                       {% if user.is_authenticated %}
                                         <li><a class="dropdown-item" href="{% url 'profile' %}">Личный кабинет</a></li>
                                       {% else %}
@@ -179,10 +181,10 @@
     </div>
 </footer>
 <!-- Footer end -->
-</div>
+{% comment %} </div>
 <button class="back-to-top" title="Наверх">
     <i class="fa-solid fa-angles-up"></i>
-</button>
+</button> {% endcomment %}
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>

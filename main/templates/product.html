@@ -28,7 +28,7 @@
                 {% if product.original_price is not None %}
                 <p class="h-3">Цена без скидки: <span class="product__original-price">{{ product.original_price }}</span></p>
                 {% endif %}
-                <p class="h-2">Цена: <span class="product__price">{{ product.price }}</span></p>
+                <p class="h-2">Цена: <span class="product__price">{{ product.price }}</span> руб</p>
             </div>
             <form action="{% url 'add_to_basket' product.id %}" class="product__add-to-basket-form">
                 <button 

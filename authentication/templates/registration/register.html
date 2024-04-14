@@ -10,37 +10,57 @@
 
 {% block content %}
 
-<div class="register-errors">
-    {% if form.errors %}
-    <p>Произошла ошибка при входе.</p>
-    {% endif %} 
-    {% if user.is_authenticated %}
-    <p>
-      Вы уже авторизованы.
-    </p>
-    {% endif %}
-  </div>
-
-<form class="register-form" method="POST" action="{% url 'register' %}">
-	{% csrf_token %}
-    <div class="input-group">
-        {{ form.username.label_tag }} {{ form.username }}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="section-title">
+                <span>Регистрация</span>
+            </h2>
+        </div>
     </div>
-    <div class="input-group">
-        {{ form.email.label_tag }} {{ form.email }}
+    <div class="row">
+        <div class="register-errors">
+            {% if form.errors %}
+            <p>Произошла ошибка при входе.</p>
+            {% endif %} 
+            {% if user.is_authenticated %}
+            <p>
+              Вы уже авторизованы.
+            </p>
+            {% endif %}
+          </div>
     </div>
-    <div class="input-group">
-        {{ form.password1.label_tag }} {{ form.password1 }}
+    <div class="row p-3 justify-content-center mb-2">
+        
+        <form class="register-form" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="inputgroup">
+                {{ form.username.label_tag }} {{ form.username }}
+            </div>
+            <div class="inputgroup">
+                {{ form.first_name.label_tag }} {{ form.first_name }}
+            </div>
+            <div class="inputgroup">
+                {{ form.last_name.label_tag }} {{ form.last_name }}
+            </div>
+            <div class="inputgroup">
+                {{ form.email.label_tag }} {{ form.email }}
+            </div>
+            <div class="inputgroup">
+                {{ form.password1.label_tag }} {{ form.password1 }}
+            </div>
+            <div class="inputgroup">
+                {{ form.password2.label_tag }} {{ form.password2 }}
+            </div>
+            <input class="btn btn-secondary px-5" type="submit" value="Зарегистрироваться" />
+        </form>
     </div>
-    <div class="input-group">
-        {{ form.password2.label_tag }} {{ form.password2 }}
+    <div class="row mb-5">
+        <p class="forgot-password-link-container">
+            <a class="link" href="{% url 'login' %}">Уже есть аккаунт?</a>
+        </p>
     </div>
-    <input class="button" type="submit" value="Зарегистрироваться" />
-</form>
-
-<p>
-    <a class="link" href="{% url 'login' %}">Уже есть аккаунт?</a>
-</p>
-  
+      
+</div>
 
 {% endblock content%}

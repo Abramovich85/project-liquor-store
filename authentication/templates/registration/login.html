@@ -10,37 +10,52 @@
 
 {% block content %}
 
-<div class="login-errors">
-  {% if form.errors %}
-  <p>Произошла ошибка при входе.</p>
-  {% endif %} {% if next %} {% if user.is_authenticated %}
-  <p>
-    Ваша учётная запись не имеет доступа на эту страницу. Чтобы продолжить,
-    войдите с помощью учётной записи, которая имеет доступ.
-  </p>
-  {% else %}
-  <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
-  {% endif %} {% endif %}
-</div>
+<div class="container">
 
-<form class="login-form" method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  <div class="input-group">
-    {{ form.username.label_tag }} {{ form.username }}
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="section-title">
+        <span>Войти:</span>
+      </h2>
+    </div>
+    <div class="login-errors">
+      {% if form.errors %}
+      <p>Произошла ошибка при входе.</p>
+      {% endif %} {% if next %} {% if user.is_authenticated %}
+      <p>
+        Ваша учётная запись не имеет доступа на эту страницу. Чтобы продолжить,
+        войдите с помощью учётной записи, которая имеет доступ.
+      </p>
+      {% else %}
+      <p>Пожалуйста, войдите, чтобы увидеть эту страницу.</p>
+      {% endif %} {% endif %}
+    </div>
   </div>
-  <div class="input-group input-group-password">
-    {{ form.password.label_tag }} {{ form.password }}
+
+  <div class="row p-3 justify-content-center">
+    <form class="login-form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="inputgroup">
+        {{ form.username.label_tag }} {{ form.username }}
+      </div>
+      <div class="inputgroup input-group-password">
+        {{ form.password.label_tag }} {{ form.password }}
+      </div>
+      <input class="btn btn-secondary px-5 mb-3" type="submit" value="Войти" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+  <div class="row">
+    <p class="forgot-password-link-container">
+      <a class="link" href="{% url 'register' %}">Регистрация</a>
+    </p>
   </div>
-  <input class="button" type="submit" value="Войти" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
 
-<p class="forgot-password-link-container">
-  <a class="link" href="{% url 'register' %}">Регистрация</a>
-</p>
-
-<p class="forgot-password-link-container">
-  <a class="link" href="{% url 'password_reset' %}">Забыли пароль?</a>
-</p>
+  <div class="row">
+    <p class="forgot-password-link-container">
+      <a class="link" href="{% url 'password_reset' %}">Забыли пароль?</a>
+    </p>
+  </div>
+</div> 
 
 {% endblock %}
