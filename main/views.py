@@ -6,12 +6,7 @@ from .models import Order, OrderProduct, Product, Categories
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
-def get_basket_quantity(request: HttpRequest):
-    items = request.session.get('basket', [])
 
-    quantities = sum([item['quantity'] for item in items])
-
-    return quantities
 def index_page(request: HttpRequest,category_slug='all'):
 
     page = request.GET.get('page', 1)
@@ -46,7 +41,6 @@ def index_page(request: HttpRequest,category_slug='all'):
 
     context = {
         'products': current_page,
-        'quantities': get_basket_quantity(request),
         'title_text': title_text,
         'slug_url': category_slug
     }
@@ -76,7 +70,6 @@ def product_view(request: HttpRequest, id=False, product_slug=False):
         raise Http404('Товар не доступен')
     return HttpResponse(render(request, 'product.html', {
         'product': product,
-        'quantities': get_basket_quantity(request),
     }))
 
 
@@ -103,7 +96,7 @@ def basket_add_view(request: HttpRequest, id: int):
 
     request.session['basket'] = basket
 
-    return redirect(request.META.get('HTTP_REFERER', 'home/#products'))
+    return redirect('home')
 
 def basket_increase_view(request: HttpRequest, id: int):
     items = request.session.get('basket', [])
@@ -213,7 +206,6 @@ def get_order_view(request: HttpRequest, id: int):
     return HttpResponse(render(request, 'order.html', {
         'order': order,
         'products': OrderProduct.objects.filter(order=order),
-        'quantities': get_basket_quantity(request),
     }))
 
 @require_http_methods(["GET"])
