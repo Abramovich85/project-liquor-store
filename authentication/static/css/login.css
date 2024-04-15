@@ -17,7 +17,7 @@
     width: 100%;
     display: block;
     border-radius: none;
-    border: 1px solid black;
+    border: 1px solid var(--gray-color);
     padding: 0.2em 0.3em;
 }
 
