@@ -68,6 +68,7 @@
       const totalPriceElement = document.querySelector(".basket-total__price-value");
       const basketItems = document.querySelectorAll(".basket-item");
       const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
+      const totalQuantityElement = document.querySelector(".menu__basket-quantity");
   
       for (const basketItem of basketItems) {
         const decreaseButton = basketItem.querySelector(".basket-item__quantity-decrease");
@@ -82,10 +83,12 @@
           )
           
           updatePrice(totalPriceElement, -+basketItem.dataset.price);
+          totalQuantityElement.textContent = +totalQuantityElement.textContent - 1;
         });
         increaseButton.addEventListener("click", async () => {
           await updateQuantity(csrfToken, productId, quantityElement);
           updatePrice(totalPriceElement, +basketItem.dataset.price);
+          totalQuantityElement.textContent = +totalQuantityElement.textContent + 1;
         });
       }
     });
