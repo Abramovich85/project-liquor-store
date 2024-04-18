@@ -101,12 +101,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#footer">Контакты</a>
                             </li>
-                            {% comment %} <li class="nav-item">
-                                <a class="nav-link" href="#">Оплата</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Доставка</a>
-                            </li> {% endcomment %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                     Каталог Вина
@@ -122,10 +116,6 @@
                     </div>
                   </div>
                     <div>
-                        {% comment %} <a href="#"class="btn p-1">
-                            <i class="fa-solid fa-heart"></i>
-                            <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle">0</span>
-                        </a> {% endcomment %}
                         <a href="{% url 'basket' %}"class="btn p-1">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="badge rounded-pill text-bg-warning cart-bage bg-warning rounded-circle menu__basket-quantity">{{basket_quantities}}</span>
@@ -150,6 +140,11 @@
                     <li><a href="{% url 'home' %}">Главная</a></li>
                     <li><a href="{% url 'home' %}#about">О нас</a></li>
                     <li><a href="{% url 'basket' %}">Корзина</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Личный кабинет</a></li>
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'login' %}">Войти в личный кабинет</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-md-3 col-6">
@@ -171,9 +166,9 @@
             <div class="col-md-3 col-6">
                 <h4>О нас</h4>
                 <ul class="footer-icons">
-                    <li><a href="#"><i class="fa-brands fa-vk"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://vk.com/" target="_blank"><i class="fa-brands fa-vk"></i></a></li>
+                    <li><a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                 </ul>
             </div>
         </div>

@@ -114,7 +114,7 @@
                         {% comment %} Product card {% endcomment %}
                         <div class="product-card">
                             <div class="id-product-container">
-                                <small class="id-product">id: {{product.display_id}}</small>
+                                <small class="id-product">код продукта: {{product.display_id}}</small>
                             </div>
                             {% if product.original_price is not None %}
                                 <div class="product-card-offer">
@@ -164,20 +164,20 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item {% if not products.has_previous %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_previous %}?{% change_params page=products.previous_page_number %}{% else %}#{% endif %}">Назад</a>
+            <a class="page-link" href=" {% if products.has_previous %}?{% change_params page=products.previous_page_number %}{% else %}#{% endif %}#products">Назад</a>
           </li>
 
           {% for page in products.paginator.page_range %}
           {% if page >= products.number|add:-2 and page <= products.number|add:2 %}
             <li class="page-item {% if products.number == page %} active {% endif %}">
-                <a class="page-link" href="?{% change_params page=page %}">{{page}}</a>
+                <a class="page-link" href="?{% change_params page=page %}#products">{{page}}</a>
             </li>
           {% endif %}
           {% endfor %}
 
 
           <li class="page-item {% if not products.has_next %} disabled {% endif %} ">
-            <a class="page-link" href=" {% if products.has_next %}?{% change_params page=products.next_page_number %}{% else %}#{% endif %}">Вперёд</a>
+            <a class="page-link" href=" {% if products.has_next %}?{% change_params page=products.next_page_number %}{% else %}#{% endif %}#products">Вперёд</a>
           </li>
         </ul>
     </nav>

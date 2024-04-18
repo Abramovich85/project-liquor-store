@@ -96,7 +96,7 @@ def basket_add_view(request: HttpRequest, id: int):
 
     request.session['basket'] = basket
 
-    return redirect('home')
+    return redirect('basket')
 
 def basket_increase_view(request: HttpRequest, id: int):
     items = request.session.get('basket', [])
