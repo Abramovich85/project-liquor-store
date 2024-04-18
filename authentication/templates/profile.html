@@ -54,8 +54,8 @@
             {% if order.is_cancelable %}
             <a
               href="{% url 'cancel_order' order.id %}"
-              class="btn btn-outline-danger button_error order-card__link order-card_link-cancel"
-              >&nbsp;Отменить&nbsp;</a
+              class="btn btn-outline-danger button_error order-card__link order-card_link-cancel px-3"
+              >Отменить</a
             >
             {% endif %}
           </div>
