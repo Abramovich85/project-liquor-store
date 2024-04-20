@@ -133,10 +133,10 @@
         {% endfor %}
     </ul>
     <div class="row mt-3">
-        <div class="col-md-8 col-sm-6 col-12 basket-continue-button">
+        <div class="col-lg-8  col-12 basket-continue-button">
             <a href="{% url 'home' %}#products" class="btn btn-outline-warning">Продолжить покупки</a>
         </div>
-        <div class="basket-total col-md-4 col-sm-6 col-12">
+        <div class="basket-total col-lg-4  col-12">
             <div class="d-grid">
                 <div class="basket-total__price mt-2"><span>Итого:</span><span class="basket-total__price-value">{{ total_price|unlocalize }}</span></div>
                 <form action="{% url 'make_order' %}" method="POST">
